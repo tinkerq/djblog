@@ -1,18 +1,27 @@
 from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
-from .models import *
+from blogdb.models import Article
 
 
-class UserSerializer(ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model=User
-        fields = ['id', 'username','first_name','last_name','email']
+        model = User
+        fields = ('username', 'email')
 
-class ArticalSerializer(ModelSerializer):
-    author=UserSerializer()
+
+class ArticleSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+
     class Meta:
-        model= Artical
-        fields=['id','url','title','image','author','body']
+        model = Article
+        fields = ('id', 'url', 'title', 'author', 'image', 'body')
 
-class NewArticleSerializer(ModelSerializer):
+
+class NewArticleSerializer(serializers.ModelSerializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    class Meta:
+        model = Article
+        fields = ('username', 'password', 'title', 'image', 'body')

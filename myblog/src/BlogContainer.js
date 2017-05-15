@@ -1,3 +1,4 @@
+
 import {Container} from 'flux/utils';
 
 import store from './BlogStore';
@@ -13,5 +14,4 @@ function getState() {
   return store.getState().merge(actions).toObject();
 }
 
-
-export default Container.createFunctional(App,getStores, getState);
+export default Container.createFunctional(App, getStores, getState);

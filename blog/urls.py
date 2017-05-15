@@ -9,4 +9,5 @@ router.register('artical/new',NewArticalViewSet)
 
 urlpatterns = [
     url('',include(router.urls)),
+    url(r'^blog/',main)
 ]
